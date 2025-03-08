@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta para mi Novia</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(45deg, #ff6b6b, #ff4757, #ff6b6b);
+      font-family: 'Arial', sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .carta {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 90%; /* Ajuste para móviles */
+      width: 600px; /* Máximo ancho para pantallas grandes */
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carta::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      transform: rotate(45deg);
+      z-index: -1;
+    }
+
+    h1 {
+      font-size: 2rem; /* Tamaño ajustado para móviles */
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 1rem; /* Tamaño ajustado para móviles */
+      line-height: 1.6;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      white-space: pre-wrap; /* Mantiene los saltos de línea */
+      overflow: hidden;
+    }
+
+    #texto {
+      font-size: 1rem; /* Tamaño ajustado para móviles */
+      line-height: 1.6;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      white-space: pre-wrap; /* Mantiene los saltos de línea */
+      text-align: left; /* Alineación del texto */
+      padding: 10px; /* Espaciado interno */
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1rem;
+      background: white;
+      animation: parpadeo 0.7s infinite;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .boton {
+      padding: 10px 20px; /* Tamaño ajustado para móviles */
+      font-size: 1rem; /* Tamaño ajustado para móviles */
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid white;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .boton:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .oculto {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="carta">
+    <h1>Para mi Baby ❤️</h1>
+    <button class="boton" id="botonComenzar">Presiona para comenzar</button>
+    <div id="texto" class="oculto"><span class="cursor"></span></div>
+  </div>
+
+  <script>
+    const botonComenzar = document.getElementById('botonComenzar');
+    const texto = document.getElementById('texto');
+    const contenido = `
+      Mi baby, mi vida, mi amor… Estoy ardiendo por ti. Mi mente no deja de imaginarte, de verte frente a mí, con esa mirada que me provoca, con ese cuerpo que me enloquece. Me imagino recorriéndote con mis labios, besando cada rincón de tu piel, sintiendo cómo te estremeces bajo mis caricias.
+
+      Quiero escuchar tu respiración acelerarse, sentir cómo tu piel se calienta con cada toque, con cada beso lento y profundo. Quiero que cierres los ojos y sientas mis manos sujetándote, mi cuerpo contra el tuyo, mi lengua explorándote hasta hacerte temblar de placer.
+
+      Imagínate encima de mí, moviéndote al ritmo de nuestro deseo, sintiendo cómo te tomo sin frenos, sin pausas, haciéndote gemir mi nombre una y otra vez. Dime, ¿puedes sentirme? Porque yo ya estoy perdiendo la cabeza por ti, por el sabor de tu piel, por el sonido de tu placer.
+
+      Quiero que cuando me leas, te muerdas los labios, que sientas cómo tu cuerpo se enciende, que no puedas pensar en otra cosa más que en mí… y en todo lo que te haré cuando te tenga entre mis manos. Y créeme, mi amor, cuando llegue ese momento… no te dejaré escapar hasta que tu cuerpo no pueda más.
+    `;
+
+    let indice = 0;
+    const velocidad = 100; // Velocidad de escritura más lenta (en milisegundos por letra)
+
+    function escribirTexto() {
+      if (indice < contenido.length) {
+        // Agregar la siguiente letra al contenido
+        texto.innerHTML = contenido.substring(0, indice + 1) + '<span class="cursor"></span>';
+        indice++;
+        setTimeout(escribirTexto, velocidad);
+      } else {
+        // Ocultar el cursor al finalizar
+        texto.innerHTML = contenido;
+      }
+    }
+
+    botonComenzar.addEventListener('click', () => {
+      botonComenzar.classList.add('oculto'); // Oculta el botón
+      texto.classList.remove('oculto'); // Muestra el texto
+      escribirTexto(); // Comienza a escribir el texto
+    });
+  </script>
+</body>
+</html>
