@@ -8,14 +8,14 @@
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       background: linear-gradient(45deg, #ff6b6b, #ff4757, #ff6b6b);
       font-family: 'Arial', sans-serif;
       color: white;
-      overflow: hidden;
+      overflow: hidden; /* Evita el desplazamiento en el body */
     }
 
     .carta {
@@ -28,7 +28,8 @@
       text-align: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       position: relative;
-      overflow: hidden;
+      overflow: hidden; /* Evita el desplazamiento dentro de la carta */
+      margin: 20px; /* Margen para evitar que toque los bordes */
     }
 
     .carta::before {
@@ -64,6 +65,8 @@
       white-space: pre-wrap; /* Mantiene los saltos de línea */
       text-align: left; /* Alineación del texto */
       padding: 10px; /* Espaciado interno */
+      max-height: 60vh; /* Limita la altura del texto */
+      overflow-y: auto; /* Permite desplazamiento interno si es necesario */
     }
 
     .cursor {
