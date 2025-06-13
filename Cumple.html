@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuenta atrás para el cumple de Laura</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #f9c5d1, #fddde6);
+      text-align: center;
+      padding: 50px;
+      color: #333;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    #countdown {
+      font-size: 2em;
+      background: white;
+      padding: 20px;
+      display: inline-block;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    .label {
+      font-size: 0.5em;
+      display: block;
+      margin-top: 5px;
+      color: #666;
+    }
+    .time-box {
+      display: inline-block;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cuenta atrás para el cumple de Laura 🎉</h1>
+  <div id="countdown">
+    <div class="time-box">
+      <span id="days">0</span><span class="label">Días</span>
+    </div>
+    <div class="time-box">
+      <span id="hours">0</span><span class="label">Horas</span>
+    </div>
+    <div class="time-box">
+      <span id="minutes">0</span><span class="label">Minutos</span>
+    </div>
+    <div class="time-box">
+      <span id="seconds">0</span><span class="label">Segundos</span>
+    </div>
+  </div>
+
+  <script>
+    function actualizarCuentaAtras() {
+      const ahora = new Date();
+      const añoActual = ahora.getFullYear();
+      let cumpleaños = new Date(`${añoActual}-06-22T00:00:00`);
+
+      // Si ya pasó el cumple este año, se pone para el siguiente año
+      if (ahora > cumpleaños) {
+        cumpleaños = new Date(`${añoActual + 1}-06-22T00:00:00`);
+      }
+
+      const diferencia = cumpleaños - ahora;
+
+      const segundos = Math.floor((diferencia / 1000) % 60);
+      const minutos = Math.floor((diferencia / 1000 / 60) % 60);
+      const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+
+      document.getElementById('days').textContent = dias;
+      document.getElementById('hours').textContent = horas;
+      document.getElementById('minutes').textContent = minutos;
+      document.getElementById('seconds').textContent = segundos;
+    }
+
+    actualizarCuentaAtras();
+    setInterval(actualizarCuentaAtras, 1000);
+  </script>
+</body>
+</html>
